@@ -11,10 +11,16 @@
   },
   "devDependencies": {
     "nuxt": "^3.9.3",
+    "prisma": "^5.8.1",
+    "vite-plugin-vuetify": "^2.0.1",
     "vue": "^3.4.14",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vuetify": "^3.5.1"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@prisma/client": "^5.8.1",
+    "@vercel/postgres": "^0.7.2",
     "firebase": "^10.7.2"
   }
 }

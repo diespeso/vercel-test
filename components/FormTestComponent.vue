@@ -24,6 +24,7 @@
  async function handleRegistration() {
   await registerUser(creds.email, creds.password)
  }
+
 </script>
 
 <style>

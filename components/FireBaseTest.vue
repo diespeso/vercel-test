@@ -17,6 +17,10 @@
   measurementId: "G-1LX6RK5YW8"
 };
 
+  // prueba de api
+  const {data} = useFetch(`/api/items`)
+  console.log('data here', data)
+
 const app =initializeApp(firebaseConfig)
 const analytics =getAnalytics()
 </script>

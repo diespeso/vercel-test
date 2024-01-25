@@ -3,6 +3,7 @@ import {getAuth} from 'firebase/auth'
 import { getFirestore} from 'firebase/firestore'
 import { getAnalytics} from 'firebase/analytics'
 
+/*
 export default defineNuxtPlugin(nutxtApp => {
   const config = useRuntimeConfig()
   
@@ -27,4 +28,9 @@ export default defineNuxtPlugin(nutxtApp => {
 
   nutxtApp.vueApp.provide('firestore', firestore)
   nutxtApp.provide('firestore', firestore)
+})
+*/
+
+export default defineNuxtPlugin(nutxtApp => {
+  // ignore
 })
