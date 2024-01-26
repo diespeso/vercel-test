@@ -1,0 +1,46 @@
+openapi: 3.1.0
+swagger: 0.7.5
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: Nuxt + Vercel
+  version: 1.0.11
+servers:
+  - url: localhost:3000/api
+  - description: localhost dev
+basePath: /api
+host: localhost:3000
+paths:
+  /items:
+    put:
+      tags:
+        - item
+      summary: Update an existing item
+      description: Update an existing item by Id
+      operationId: updateItem
+      requestBody:
+        description: Update an existent item in the database
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pet"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pet"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Pet"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Pet not found
+        "422":
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets

@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   debug: true,
   logLevel: 'verbose',
+  // inicia vuetify
   build: {
     transpile: ['vuetify'],
   },
@@ -24,5 +25,12 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
+  },
+  // termina vuetify
+  // nitro
+  runtimeConfig: {
+    public: {
+      apiBase: '/api'
+    }
   }
 })

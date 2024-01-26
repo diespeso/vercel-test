@@ -73,3 +73,7 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+instalar swagger
+correr swagger project edit
+me quede tratando de exponer la api desde nuxt
