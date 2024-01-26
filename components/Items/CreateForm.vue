@@ -17,28 +17,33 @@
 </template>
 
 <script setup lang="ts">
-    import {type Item} from '~/server/models/item'
+    import {type Item, isSendValid} from '~/server/models/item'
 
     const props = defineProps<{
-        onCreate: AsyncFunction<void>
+        onCreate: (data: Item) => Promise<void>
     }>()
 
     const { postItem } = useDbItems()
 
-    const itemForm = reactive({
-        name: null,
-        description: null,
+    const itemForm: Item = reactive({
+        name: '',
+        description: '',
         price: 0.0
     })
 
     const sendCreate = async () => {
-        const { success, data, message } = await postItem(itemForm)
-        if (success) {
-            props.onCreate(data)
+        // validación de no vacios:
+        if (isSendValid(itemForm)) {
+            const { success, data, message } = await postItem(itemForm)
+            if (success) {
+                props.onCreate(data)
+            } else {
+                throw new Error('failed to create item: ')
+            }
         } else {
-            console.log(data)
-            throw new Error('failed to create item: ')
+            alert("Campos obligatorios")
         }
+
 
     }
 </script>

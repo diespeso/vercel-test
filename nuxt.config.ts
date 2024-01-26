@@ -32,5 +32,8 @@ export default defineNuxtConfig({
     public: {
       apiBase: '/api'
     }
+  },
+  devServer: {
+    port: 3001
   }
 })

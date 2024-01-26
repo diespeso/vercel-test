@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="item in items.data" :key="item.id">
+            <tr v-for="(item, index) in $props.items" :key="index">
                 <td>
                     <span >{{ item.id }}</span>
                 </td>
@@ -45,6 +45,8 @@
 <script setup lang="ts">
     import {type Item} from '~/server/models/item'
 
+    const emit = defineEmits(['delete'])
+
     const props = defineProps<{
         items: Item[]
     }>()
@@ -58,25 +60,25 @@
 
     const { getItems, deleteItemById, updateItemById } = useDbItems()
 
-    const items: {
+    /*const items: {
         data: Item[]
     } = reactive({
-        data: []
+        data: props.items,
     })
 
 
-    const { success, data}: ApiResponse<Item[]> = await getItems()
+    const { success, data}: ApiResponse<Item[]> = (await getItems())!
     
     if(success) {
         items.data = data
-    }
+    }*/
 
     const controls = {
         onClickDelete : async (id: number) => {
             const { success, message}= await deleteItemById(id)
 
             if (success) {
-                items.data = items.data.filter(item => item.id != id)
+                emit('delete', id)
             } else {
                 alert(message)
             }
@@ -94,7 +96,8 @@
             const { success, data: updated, message} = await updateItemById(item.id!, item)
 
             if (success) {
-                items.data = items.data.map(_item => (_item.id == updated?.id ? updated : _item))
+                // items.data = items.data.map(_item => (_item.id == updated?.id ? updated : _item))
+                alert("saved success")
                 currentEdit.value = null
             } else {
                 alert(message)

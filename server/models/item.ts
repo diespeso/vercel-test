@@ -6,3 +6,7 @@ export interface Item {
     created_at?: Date,
     updated_at?: Date
 }
+
+export const isSendValid = (item: Item): boolean => {
+    return (item.name != '' && item.description != '' && item.price != 0)
+}
