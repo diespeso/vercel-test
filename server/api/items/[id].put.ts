@@ -24,5 +24,10 @@ export default defineEventHandler(async event => {
         }
     })
 
-    return item ? sendApiSuccess(item) : sendApiFailure(null, 'Failed to update item')
+    if(!item) {
+        setResponseStatus(event, 404)
+        return  sendApiFailure(null, 'Failed to update item')
+    }
+
+    return sendApiSuccess(item)
 })

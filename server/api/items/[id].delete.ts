@@ -18,5 +18,10 @@ export default defineEventHandler(async event => {
         }
     })
 
-    return deleted ? sendApiSuccess(null) : sendApiFailure(null, "Failed to delete item")
+    if(!deleted) {
+        setResponseStatus(event, 404);
+        return sendApiFailure(null, "Failed to delete item")
+    }
+
+    return sendApiSuccess(null)
 })

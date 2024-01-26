@@ -18,7 +18,11 @@ export default defineEventHandler(async event => {
         }
     })
 
+    if (!item) {
+        setResponseStatus(event, 404);
+        return sendApiFailure(null, 'Item not found');
+    }
 
 
-    return item ? sendApiSuccess(item) : sendApiFailure(null, 'Item not found')
+    return sendApiSuccess(item);
 })

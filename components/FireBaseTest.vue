@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+// ignorar este archivo 
 
   import {initializeApp} from 'firebase/app'
   import {getAnalytics} from 'firebase/analytics'

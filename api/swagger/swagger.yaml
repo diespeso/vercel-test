@@ -1,22 +1,30 @@
 openapi: 3.1.0
 swagger: 0.7.5
 info:
-  title: Swagger Petstore - OpenAPI 3.0
+  title: Swagger Test Item - OpenAPI 3.0
   description: Nuxt + Vercel
   version: 1.0.11
 servers:
-  - url: localhost:3000/api
+  - url: localhost:3001/api
   - description: localhost dev
 basePath: /api
-host: localhost:3000
+host: localhost:3001
 paths:
-  /items:
+
+  /items/{id}:
     put:
       tags:
         - item
       summary: Update an existing item
-      description: Update an existing item by Id
       operationId: updateItem
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID of the item to update
+        
       requestBody:
         description: Update an existent item in the database
         content:
@@ -34,13 +42,97 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Pet not found
-        "422":
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+    delete:
+      tags:
+        - item
+      summary: Deletes an existing item
+      operationId: deleteItem
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID of the item to delete
+      responses:
+        "200":
+          description: Successsful operation
+          content:
+            application/json:
+              schema:
+                $ref. "#/definitions/ApiResponse"
+    get:
+      param:
+        id
+      tags:
+        - item
+      summary: Read an existing item
+      operationId: getItem
+      parameters:
+        - in: path
+          name: id
+          required: false
+          schema:
+            type: integer
+            description: ID of the item to read
+      responses:
+        "200": 
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/ApiResponse"
+
+  /items:
+    post:
+      tags:
+        - item
+      summary: Create an item 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/Item"
+            example:
+              name: NewProduct
+              description: ProductDescription
+            required: true
+    get:
+      param:
+        id
+      tags:
+        - item
+      summary: Read an existing item
+      operationId: getItem
+      responses:
+        "200": 
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/ApiResponse"
+
+
+definitions:
+  Item:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: number
+      created_at:
+        type: string
+      updated_at:
+        type: string
+  ApiResponse:
+    properties:
+      success:
+        type: boolean
+      data:
+        type: object
+      message:
+        type: string

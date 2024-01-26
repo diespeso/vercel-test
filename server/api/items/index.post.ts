@@ -18,6 +18,7 @@ export default defineEventHandler(async (event) => {
     
         return sendApiSuccess(created)
     } catch(exception: any) {
+        setResponseStatus(event, 500)
         return sendApiFailure(null, exception)
     }
 

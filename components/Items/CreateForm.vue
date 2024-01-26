@@ -1,18 +1,22 @@
 <template>
-    <div>
-        <div class="form-row">
+    <v-card class="form-card">
+        <v-card-title style="display: flex; justify-content: center;">Create Item</v-card-title>
+        <div>
+            <div class="form-row">
             <v-text-field v-model="itemForm.name" color="primary" variant="underlined" label="Name"/>
+            </div>
+            <div class="form-row">
+                <v-text-field v-model="itemForm.description" color="primary" variant="underlined" label="Description"/>
+            </div>
+            <div class="form-row">
+                <v-text-field v-model="itemForm.price"  color="primary" variant="underlined" label="Price"/>
+            </div>
         </div>
-        <div class="form-row">
-            <v-text-field v-model="itemForm.description" color="primary" variant="underlined" label="Description"/>
+        <div style="display: flex; justify-content: center;">
+            <v-btn v-on:click="sendCreate">Create</v-btn>
         </div>
-        <div class="form-row">
-            <v-text-field v-model="itemForm.price"  color="primary" variant="underlined" label="Price"/>
-        </div>
-    </div>
-    <div>
-        <v-btn v-on:click="sendCreate">Create</v-btn>
-    </div>
+    </v-card>
+
 
 </template>
 
@@ -47,3 +51,11 @@
 
     }
 </script>
+
+<style>
+    .form-card {
+        width: 30%;
+        margin: 20px;
+        padding: 20px;
+    }
+</style>
