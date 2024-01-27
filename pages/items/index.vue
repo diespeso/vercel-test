@@ -9,13 +9,6 @@
 import {type Item} from '~/server/models/item'
 
     const { getItems } = useDbItems()
-    
-    /*
-    const  items: {
-        data: Item[]
-    } = reactive({
-        data: []
-    })*/
 
     const items: Ref<{
         data: Item[]
